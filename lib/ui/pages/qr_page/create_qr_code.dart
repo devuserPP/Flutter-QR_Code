@@ -39,6 +39,7 @@ class QrCode extends StatelessWidget {
             await AppController.to.createQr(AppController.to.qrData!);
 
             Get.toNamed(Routes.home);
+
             //Get.back();
             if (ApodealAds()
                 .showAdsEverySecondTime(_pressBackButtonCounter++)) {
