@@ -29,6 +29,7 @@
 .pub-cache/
 .pub/
 /build/
+/obfuscate
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -41,3 +42,4 @@ lib/generated_plugin_registrant.dart
 
 
 *.lock
+.gitignore
