@@ -10,6 +10,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../../../core/controllers/app_controller.dart';
+import '../../../core/services/appodealAds_services.dart';
+
+import '../../../routes.dart';
+
+int _pressBackButtonCounter = 0;
 
 class QrCode extends StatelessWidget {
   final qrKey = GlobalKey();
@@ -29,10 +34,18 @@ class QrCode extends StatelessWidget {
           '$directory/${DateTime.now()}${AppController.to.qrData!}.png',
         );
         imgFile.writeAsBytes(pngBytes);
-        GallerySaver.saveImage(imgFile.path).then((success) async {
-          await AppController.to.createQr(AppController.to.qrData!);
-          Get.back();
-        });
+        GallerySaver.saveImage(imgFile.path).then(
+          (success) async {
+            await AppController.to.createQr(AppController.to.qrData!);
+
+            Get.toNamed(Routes.home);
+            //Get.back();
+            if (ApodealAds()
+                .showAdsEverySecondTime(_pressBackButtonCounter++)) {
+              ApodealAds().showInterstitialAd();
+            }
+          },
+        );
       }
     }
   }

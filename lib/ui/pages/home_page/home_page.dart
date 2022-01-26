@@ -16,6 +16,7 @@ class HomePage extends HookWidget {
     final tabController = useTabController(initialLength: 2);
     final qrdata = useTextEditingController();
     tabController.addListener(() => index.value = tabController.index);
+    // Show banner Ad
     Appodeal.show(Appodeal.BANNER_BOTTOM);
     return GetBuilder<AppController>(
       builder: (c) {
@@ -65,7 +66,7 @@ class HomePage extends HookWidget {
                 labelColor: Colors.black87,
                 tabs: [
                   Tab(text: 'Scans'),
-                  Tab(text: 'Createds'),
+                  Tab(text: 'History'),
                 ],
               ),
             ),

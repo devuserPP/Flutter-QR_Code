@@ -41,4 +41,20 @@ class ApodealAds {
         ],
         myConsent);
   }
+
+  Future<bool> showInterstitialAd() async {
+    return await Appodeal.canShow(Appodeal.INTERSTITIAL).then(
+      (value) async {
+        await Appodeal.showWithPlacement(Appodeal.INTERSTITIAL, 'default');
+        return true;
+      },
+      onError: (error) {
+        return false;
+      },
+    );
+  }
+
+  bool showAdsEverySecondTime(int pressBackButtonCounter) {
+    return pressBackButtonCounter.isOdd ? true : false;
+  }
 }

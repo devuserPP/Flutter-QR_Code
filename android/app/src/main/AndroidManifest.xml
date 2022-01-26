@@ -8,7 +8,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="QR Scanner/Reader"
+        android:label="QR Scan"
         android:icon="@mipmap/ic_launcher"
        >
 
