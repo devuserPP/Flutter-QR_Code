@@ -11,7 +11,7 @@ void main() async {
   await init();
 
   //Appodeal init
-  await ApodealAds().appodealInit(userConsent: "TRUE", isTested: true);
+  await ApodealAds().appodealInit(userConsent: "TRUE", isTested: false);
 
   runApp(MyApp());
 }
