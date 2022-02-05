@@ -7,8 +7,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../../core/controllers/app_controller.dart';
 import '../../../routes.dart';
 
-import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
-
 class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,8 +14,7 @@ class HomePage extends HookWidget {
     final tabController = useTabController(initialLength: 2);
     final qrdata = useTextEditingController();
     tabController.addListener(() => index.value = tabController.index);
-    // Show banner Ad
-    Appodeal.show(Appodeal.BANNER_BOTTOM);
+
     return GetBuilder<AppController>(
       builder: (c) {
         return DefaultTabController(
