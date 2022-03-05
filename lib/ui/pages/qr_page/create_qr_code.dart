@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
+
 import '../../../core/controllers/app_controller.dart';
 import '../../../core/services/appodealAds_services.dart';
 
@@ -54,6 +56,7 @@ class QrCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final qrData = AppController.to.qrData;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -73,7 +76,17 @@ class QrCode extends StatelessWidget {
             ),
             const SizedBox(height: 25),
             CupertinoButton(child: Text("Save"), onPressed: takeScreenShot),
-            const SizedBox(height: 25)
+            const SizedBox(height: 25),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Visibility(
+                  visible: true,
+                  child: AppodealBanner(
+                      adSize: AppodealBannerSize.BANNER, placement: "default"),
+                ),
+              ),
+            ),
           ],
         ),
       ),

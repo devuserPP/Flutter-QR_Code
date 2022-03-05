@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../../core/controllers/app_controller.dart';
 
-
 class ScanQrPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _ScanQrPageState();
@@ -26,6 +25,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
   @override
   void reassemble() {
     super.reassemble();
+
     if (Platform.isAndroid) {
       controller!.pauseCamera();
     } else if (Platform.isIOS) {
