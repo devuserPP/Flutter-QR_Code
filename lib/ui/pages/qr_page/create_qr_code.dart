@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart';
@@ -53,6 +53,25 @@ class QrCode extends StatelessWidget {
     }
   }
 
+  void deletecreenShot() async {
+    PermissionStatus res;
+    res = await Permission.storage.request();
+    if (res.isGranted) {
+      final directory = (await getApplicationDocumentsDirectory()).path;
+      final imgFile = File(
+        '$directory/${DateTime.now()}${AppController.to.qrData!}.png',
+      );
+      try {
+        await imgFile.delete();
+      } catch (e) {
+        Get.toNamed(Routes.createQR);
+        return;
+      }
+    }
+    Get.toNamed(Routes.createQR);
+    //Get.back();
+  }
+
   @override
   Widget build(BuildContext context) {
     final qrData = AppController.to.qrData;
@@ -77,6 +96,14 @@ class QrCode extends StatelessWidget {
             const SizedBox(height: 25),
             CupertinoButton(child: Text("Save"), onPressed: takeScreenShot),
             const SizedBox(height: 25),
+            // IconButton(
+            //   icon: Icon(Icons.delete),
+            //   iconSize: 24.0,
+            //   color: Colors.red,
+            //   onPressed: () {
+            //     deletecreenShot();
+            //   },
+            // ),
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
